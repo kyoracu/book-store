@@ -1,8 +1,12 @@
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-import { cartAddBook, cartDeleteBook, cartRemoveBook } from "../../store/actions/cartItemsCreator";
-
+import {
+  cartAddBook,
+  cartDeleteBook,
+  cartRemoveBook,
+  Count,
+} from "../../store/actions/cartItemsCreator";
 
 const ShopCartTable = () => {
   const items = useSelector((state) => state.ShopCartReducer.cartItems);
@@ -50,7 +54,7 @@ const ShopCartTable = () => {
 
         <tbody>{items.map(renderItems)}</tbody>
       </Table>
-      <div>Total: 500$</div>
+      <b>Total price: {Count(items)}</b>
     </div>
   );
 };

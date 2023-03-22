@@ -2,6 +2,14 @@ import { shopCartActions } from "../reducers/shopCartReducers";
 
 const { triggerCartItems } = shopCartActions;
 
+export const Count = (items) => {
+  let total = 0;
+  for (let i in items) {
+    total += items[i].total;
+  }
+  return total;
+};
+
 const createItem = (book, cartBook = {}, quantity) => {
   const { count = 0, total = 0, id = book.id, title = book.title } = cartBook;
 
@@ -52,6 +60,6 @@ export const cartRemoveBook = (id) => (dispatch, getState) => {
 
 export const cartDeleteBook = (id) => (dispatch, getState) => {
   const { cartItems } = getState().ShopCartReducer;
-  const items = cartItems.filter((el) => el.id !== id)
+  const items = cartItems.filter((el) => el.id !== id);
   dispatch(triggerCartItems(items));
 };
